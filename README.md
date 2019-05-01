@@ -1,6 +1,6 @@
 # **Firmware 2018**
 
-**The code of lower-board for ZJUDancer in 2017, redesigned by Jiang Chaofeng and Li Xinghan.**
+**The code of lower-board for ZJUDancer in 2018, redesigned by Jiang Chaofeng and Li Xinghan.**
 
 **Due to the use of NVIDIA JETSON TX1/TX2, Motor module and BatMeasure module are removed, and their function are respectively replaced by upper-computer and Bottom Board.**
 
