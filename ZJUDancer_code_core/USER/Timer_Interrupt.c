@@ -70,17 +70,17 @@ void TIM5_IRQHandler(void)
 		for(i = 0; i < 20; i++)
 			printf("%d ", position_buff[i]);
 		printf("\r\n");
-		/*
-		printf("voltage = %d", voltage_uint32);
-		printf("\r\n");
-		printf("accxyz = %d; %d; %d;", accxyz[0], accxyz[1], accxyz[2]);
-		printf("\r\n");
-		printf("gyroxyz = %d; %d; %d;", gyroxyz[0], gyroxyz[1], gyroxyz[2]);
-		printf("\r\n");
-		printf("magnxyz = %d; %d; %d;", magnxyz[0], magnxyz[1], magnxyz[2]);
-		printf("\r\n");
-		printf("\r\n");
-		*/
+		
+// 		printf("voltage = %d", voltage_uint32);
+// 		printf("\r\n");
+// 		printf("accxyz = %d; %d; %d;", accxyz[0], accxyz[1], accxyz[2]);
+// 		printf("\r\n");
+// 		printf("gyroxyz = %d; %d; %d;", gyroxyz[0], gyroxyz[1], gyroxyz[2]);
+// 		printf("\r\n");
+// 		printf("magnxyz = %d; %d; %d;", magnxyz[0], magnxyz[1], magnxyz[2]);
+// 		printf("\r\n");
+// 		printf("\r\n");
+		
 		Load_tx_buff_u4();
 		Start_u4_tran();
 	}

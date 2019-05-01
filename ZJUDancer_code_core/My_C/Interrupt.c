@@ -131,6 +131,7 @@ void USART2_IRQHandler(void)
 
 void USART3_IRQHandler(void)
 {
+
 	static uint8_t rx_buff[28] = {0};
 	static uint8_t pointer = 0;
 	uint8_t ch_temp = 0;
@@ -141,7 +142,6 @@ void USART3_IRQHandler(void)
 		USART_ClearITPendingBit(USART3, USART_IT_TC);
 		USART_ClearFlag(USART3, USART_FLAG_TC);
 		
-		
 		return;
 	}
 	
@@ -151,6 +151,7 @@ void USART3_IRQHandler(void)
 		USART_ClearFlag(USART3, USART_FLAG_RXNE);
 		
 		ch_temp = USART3->DR;
+		//USART6->DR = ch_temp;
 		if(pointer < 4)
 		{
 			rx_buff[pointer++] = ch_temp;
@@ -197,6 +198,7 @@ void USART3_IRQHandler(void)
 
 void UART4_IRQHandler(void)
 {
+	
 //	static uint8_t rx_buff[28] = {0};
 	static uint8_t tx_pointer = 0;
 //	uint8_t ch_temp = 0;
@@ -207,8 +209,10 @@ void UART4_IRQHandler(void)
 		USART_ClearITPendingBit(UART4, USART_IT_TC);
 		USART_ClearFlag(UART4, USART_FLAG_TC);
 		
+
 		if(tx_pointer < buff_u4_len)
 			UART4->DR = tx_buff_u4[tx_pointer++];
+		//USART6->DR = ch_temp;
 		else
 			tx_pointer = 1;
 	}

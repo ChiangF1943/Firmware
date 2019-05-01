@@ -227,7 +227,7 @@ void Load_tx_buff_u1(void)
 void Start_u1_tran(void)
 {
 	USART1->DR = tx_buff_u1[0];
-	//USART6->DR = tx_buff_u1[0];
+	USART6->DR = tx_buff_u1[0];
 }
 
 void check_sum_reverse(uint8_t * data, uint8_t num_start, uint8_t num_end, uint8_t * res_buff)
@@ -448,8 +448,8 @@ void AdisReadData(void)
 	gyrof[1] = (float)(gyroxyz[1]) * (float)0.07326;
 	gyrof[2] = (float)(gyroxyz[2]) * (float)0.07326;
 	
-	//printf("accxyz = %5.3f; accxyz = %5.3f; accxyz = %5.3f; \n", accf[0], accf[1], accf[2]);
-	//printf("gyrox = %5.3f; gyroy = %5.3f; gyroz = %5.3f; \n", gyrof[0], gyrof[1], gyrof[2]);
+	printf("accxyz = %5.3f; accxyz = %5.3f; accxyz = %5.3f; \r\n", accf[0], accf[1], accf[2]);
+	printf("gyrox = %5.3f; gyroy = %5.3f; gyroz = %5.3f; \r\n", gyrof[0], gyrof[1], gyrof[2]);
 	
 }
 

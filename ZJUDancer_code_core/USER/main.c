@@ -34,8 +34,9 @@ uint16_t uart1_rx_count = 0;
 int main(void)
 {	
 
-//	uint8_t ch = 0;
+//		uint8_t ch = 0;
 //	uint8_t i = 0;
+
 	
 	SystemInit();
 	//SYSCLK_Init(256, 8);
@@ -65,18 +66,18 @@ int main(void)
 		//TIM2_Init(5000);
 		TIM12_Init(500);
 		//TIM11_Init(2000);
-		TIM3_Init(5); 
+		TIM3_Init(1);  //陀螺仪5ms周期
 		
 		//TIM4_PWM_Init(1000, 16);
-		TIM4_Init(2);
-		TIM5_Init(500);
-		TIM6_Init(10);
+		TIM4_Init(2);//舵机板串口2ms周期
+		TIM5_Init(500); //前胸板串口500ms周期
+		TIM6_Init(10); //和上位机通信10ms周期
 		
-		TIM7_Init(1000);
+		TIM7_Init(1000); //1000ms
 		
 		tim7_flag = 0;
 		//Set_Motor_Torque_Limit(1023);
-		//Set_Motor_Speed_Limit(100);
+		Set_Motor_Speed_Limit(100);
 		
 		//Set_Motor_Led_All(1);
 		//Set_Motor_Torque_Enable_All(1);
@@ -98,17 +99,17 @@ int main(void)
 		}
 		if(tim7_flag == 3 )
 		{
-			Set_Motor_Speed_Limit(350);
+			Set_Motor_Speed_Limit(100);
 			//Set_Motor_Torque_Limit(1023);
 			//action_flag = 1;
 		}
 		if(tim7_flag == 4 )
 		{
-			Set_Motor_Speed_Limit(100);
+			Set_Motor_Speed_Limit(350);
 			Set_Motor_Torque_Limit(1023);
 			//action_flag = 1;
 		}
-		if(tim7_flag >= 10 )
+		if(tim7_flag >= 6 )
 		{
 			Set_Motor_Speed_Limit(1023);
 			Set_Motor_Torque_Limit(1023);
@@ -116,12 +117,12 @@ int main(void)
 		}
 		
 		
-		//ch = Usart3_Rece();
-		//Usart6_Tran(ch);
+		/*ch = Usart3_Rece();
+		Usart6_Tran(ch);*/
 		//AdisReadData();
-		//printf("acc x = %f, y = %f, z = %f\n", accf[0], accf[1], accf[2]);
-		//printf("voltage = %d\n", voltage_uint32);
-		//printf("voltage_uint32 = %d\n", voltage_uint32);
+		//printf("acc x = %f, y = %f, z = %f\r\n", accf[0], accf[1], accf[2]);
+		printf("voltage = %d\r\n", voltage_uint32);
+		printf("voltage_uint32 = %d\r\n", voltage_uint32);
 		
 		//position_buff[0] = 100;
 		//Delayms(2000);

@@ -1,4 +1,4 @@
 # Firmware
-
-**The code of lower-board of ZJUDancer in 2016, designed by Huang Haojun.**
+---
+**The code of lower-board for ZJUDancer in 2017, designed by Huang Haojun.**
 

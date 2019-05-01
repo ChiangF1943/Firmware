@@ -53,9 +53,6 @@ int main(void)
 	
 	while(1)
 	{
-		//voltage_uint16 = AD7171_Read();
-		//voltage = (float)voltage_uint16 * (float)2 / (float)65536 * (float)4.096 / ((float)(1000+220) / (float)(2000+2000+1000+220));
-		
 		
 		for(i = 0; i < 10; i++)
 		{
@@ -68,11 +65,12 @@ int main(void)
 		
 		voltage = (vol_buff[6] + vol_buff[7] + vol_buff[8] + vol_buff[9])/4;
 		
-		display_vol = voltage / (float)0.0001;
+		display_vol = voltage / (float)0.0001; //实际电压值xx.xx乘以10000，转换成32位2进制，分为4个字节发送
 		Load_tx_buff();
-		Usart6_Tran_Str(tx_buff, 28);
 		Usart1_Tran_Str(tx_buff, 28);
-		//printf("display_vol = %d\n", display_vol);
+		//Usart6_Tran_Str(tx_buff, 28);
+		//printf("voltage = %f\r\n", voltage);
+		//printf("display_vol = %d\r\n", (int)display_vol);
 		Delayms(200);
 		
 	}
