@@ -106,8 +106,8 @@ void SPI2_Interp_config(void)
 {
 	NVIC_InitTypeDef NVIC_InitStructure;
 	NVIC_InitStructure.NVIC_IRQChannel = SPI2_IRQn;           //嵌套通道为ADC_IRQn
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2; //抢占优先级为 1
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;    //响应优先级为 2
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1; //抢占优先级为 1
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;    //响应优先级为 2
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;     //通道中断使能
 	NVIC_Init(&NVIC_InitStructure);	
 	

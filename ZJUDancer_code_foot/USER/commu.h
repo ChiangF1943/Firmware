@@ -17,8 +17,8 @@ char c[16];
 float f[4];
 };
 
-void USART3_Init(u32 bound);
-void USART3_IRQHandler(void);
+void USART1_Init(u32 bound);
+void USART1_IRQHandler(void);
 uint8_t commu_decode(void);
 void commu_get(uint8_t buf);
 void commu_start(void);

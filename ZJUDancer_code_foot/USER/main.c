@@ -4,20 +4,18 @@
 #include <stdio.h>
 #include "commu.h"
 
-
   #define ADC1_DR_ADDRESS          ((uint32_t)0x4001204C)
 	#define Max_buf 2
 	//at least 2
-
-
+//6-1，5-2，4-3，2-4
 
 
 __IO uint16_t uhADC1ConvertedValue[4] = {0,0,0,0};
 double uwADC1ConvertedVoltage[4] = {0,0,0,0};
 double RealValue[4] = {0,0,0,0};
 double buf[4][Max_buf];
-double weight[4]={0.90,0.89,0.90,0.96};
-double offset[4]={0.09,0.0,0.32,0.00};
+double weight[4]={1,1,1,1};
+double offset[4]={0.0,0.0,0.0,0.0};
 int i,j=0,k;
 volatile unsigned char delay_flag = 0;
 
@@ -45,19 +43,22 @@ int main(void)
 	
 	while (1)
 	{
+		
+		
+		
 		for(i=0;i<4;i++)
 		{
-			uwADC1ConvertedVoltage[i] =(double)(uhADC1ConvertedValue[i])*3300/0xFFF/1000;
+			uwADC1ConvertedVoltage[i] =(double )(uhADC1ConvertedValue[i] )*3300/0xFFF/1000;
 			RealValue[i]=(buf[i][Max_buf-1]/(Max_buf-1)-offset[i])/weight[i];
 			buf[i][j]=uwADC1ConvertedVoltage[i];
-			buf[i][Max_buf-1]=0;
+			buf[i][Max_buf-1]=0;//清0
 			for(k=0;k<(Max_buf-1);k++)
 			{
 				buf[i][Max_buf-1]+=buf[i][k];
 			}
 			//if(i==2)		
 		//	printf("ADC[%d] = %lf KG     ",i,RealValue[i]);
-		Delayms(10);
+		Delayms(1);
 		}
 		j++;
 		if(j==Max_buf)
@@ -66,22 +67,24 @@ int main(void)
 		for(i=0;i<4;i++)
 		{
 			sum_weight+=RealValue[i];
-		}
-
-
+		}	
+		
 if(com_flag==COMMU_GETDATA)
 		{
-			direction_485_ctrl(1);
+			direction_485_ctrl(1);//打开485
 			GPIO_ResetBits(GPIOB, GPIO_Pin_1);
 			//commu_encode(v[0],v[1],v[2],v[3]);
 			com_flag=COMMU_IDLE;
+			//printf("sum = %lf KG     ",sum_weight);
+			//printf("\n");
+			//commu_start();
 			commu_encode(RealValue[0],RealValue[1],RealValue[2],RealValue[3]);
 			direction_485_ctrl(0);
 			GPIO_SetBits(GPIOB, GPIO_Pin_1);
 		}
 
-	//	printf("sum = %lf KG     ",sum_weight);
-	//	printf("\n");
+		//printf("sum = %lf KG     ",sum_weight);
+		//printf("\n");
 	}
 	
 }
@@ -172,10 +175,10 @@ static void ADC_Config(void)
 
 
 // static void USART_Config(void)
-// {
-// 	GPIO_InitTypeDef GPIO_InitStructure;
+ //{
+ 	//GPIO_InitTypeDef GPIO_InitStructure;
 // 	USART_InitTypeDef USART_InitStructure;
-	
+//	
 // 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1,ENABLE);
 // 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA,ENABLE);
 	
@@ -197,7 +200,7 @@ static void ADC_Config(void)
 // 	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
 
 // 	USART_Init(USART1,&USART_InitStructure);
-	
+
 // 	USART_Cmd(USART1, ENABLE);
 // 	USART_ClearFlag(USART1, USART_FLAG_TC);
 // 	USART_ClearFlag(USART1, USART_FLAG_RXNE);
@@ -228,7 +231,7 @@ void TIM2_Init(void)
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
 
 	NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;    
 	NVIC_Init(&NVIC_InitStructure);
@@ -260,9 +263,10 @@ void TIM2_IRQHandler(void)
 
 void Delayms(unsigned int ms)
 {
-	TIM2->ARR= ms * 1000;  //设定计数器自动重装值//刚好20ms
+	TIM2->ARR= ms * 250;  //设定计数器自动重装值//刚好20ms
 	TIM_Cmd(TIM2, ENABLE);
-	while(delay_flag == 0);
+
+	while( delay_flag == 0 );
 	
 	delay_flag = 0;
 }
@@ -279,7 +283,7 @@ struct __FILE
 
 FILE __stdout;       
 //定义_sys_exit()以避免使用半主机模式    
-_sys_exit(int x) 
+int _sys_exit(int x) 
 { 
 	x = x; 
 } 

@@ -867,10 +867,13 @@ ARM Macro Assembler    Page 14
               00000400 
               00000200 
               00000000 
-Command Line: --debug --xref --cpu=Cortex-M4.fp --apcs=interwork --depend=..\Ou
-tput\startup_stm32f4xx.d -o..\Output\startup_stm32f4xx.o -IF:\Keil\ARM\RV31\Inc
- -IF:\Keil\ARM\CMSIS\Include -IF:\Keil\ARM\Inc\ST\STM32F4xx --list=..\Output\st
-artup_stm32f4xx.lst ..\Library\StartUp\startup_stm32f4xx.s
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
+erwork --depend=..\output\startup_stm32f4xx.d -o..\output\startup_stm32f4xx.o -
+I"D:\’„Ω≠¥Û—ß\ZJUDANCER\foot pressure sensor\code\Project_1\Project\RTE" -I"D:\
+KEIL 5.15\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include" -I"D:\KEIL 5.15\ARM\PACK\Keil
+\STM32F4xx_DFP\2.10.0" --predefine="__UVISION_VERSION SETA 514" --predefine="_R
+TE_ SETA 1" --predefine="STM32F405xx SETA 1" --list=..\output\startup_stm32f4xx
+.lst ..\Library\StartUp\startup_stm32f4xx.s
 
 
 
@@ -1983,4 +1986,4 @@ Symbol: __use_two_region_memory
       None
 Comment: __use_two_region_memory unused
 3 symbols
-446 symbols in table
+449 symbols in table
