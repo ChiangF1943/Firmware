@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1215</width>
+    <height>919</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <item>
+     <layout class="QVBoxLayout" name="TotalInterface">
+      <item>
+       <layout class="QHBoxLayout" name="MainInterface" stretch="6">
+        <item>
+         <widget class="QGroupBox" name="GB_Serial">
+          <property name="title">
+           <string>串口操作</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_15">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout">
+             <item>
+              <layout class="QHBoxLayout" name="SerialControl" stretch="1,1,1,1,0,0">
+               <item>
+                <widget class="QComboBox" name="CB_SerialList"/>
+               </item>
+               <item>
+                <widget class="QPushButton" name="PB_FreshList">
+                 <property name="text">
+                  <string>刷新列表</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="PB_OpenSerial">
+                 <property name="text">
+                  <string>打开串口</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="PB_CloseSerial">
+                 <property name="text">
+                  <string>关闭串口</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="PB_ClearLog">
+                 <property name="text">
+                  <string>清空窗口</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="PB_SwitchLog">
+                 <property name="text">
+                  <string>暂停显示</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QTextEdit" name="SerialLog"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="LB_Speed">
+               <property name="text">
+                <string>位置:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="LB_Pos">
+               <property name="text">
+                <string>速度:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="LB_ADIS">
+               <property name="text">
+                <string>陀螺仪数据:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="LB_FootData">
+               <property name="text">
+                <string>足底板数据</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="LB_RevRaw">
+               <property name="text">
+                <string>原始数据:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="LB_SendBuffer">
+               <property name="text">
+                <string>发送数据:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="GB_CTRL" stretch="0,0">
+               <item>
+                <widget class="QCheckBox" name="FootData_CTRL">
+                 <property name="text">
+                  <string>压力板开启</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="SendData_CTRL">
+                 <property name="text">
+                  <string>数据发送</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

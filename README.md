@@ -1,12 +1,14 @@
-# **Firmware 2018**
+# **Firmware 2019**
 
-**The code of lower-board for ZJUDancer in 2018, redesigned by Jiang Chaofeng and Li Xinghan.**
+**The code of lower-board for ZJUDancer in 2019, designed by Jiang Zhang Yuchen and Jiang Chaofeng.**
 
-**Due to the use of NVIDIA JETSON TX1/TX2, Motor module and BatMeasure module are removed, and their function are respectively replaced by upper-computer and Bottom Board.**
+**Lower-board is removed last year and TX1 controls motors directly through USB-UART-RS485. 
+However, the test results show that the delay time in IMU data and motor data reading directly by upper-computer is massive, and it`s unacceptable. As a consequence, the concept of lower-board is used again. 
+Core module is replaced by Motor module to reduce workload.**
 
 ---
 
-+ **ZJUDancer_code_core**: code for Core module is rewritten to be a communication converter for IMU. UART1, SPI2, TIM3 are used.
++ **ZJUDancer_code_motor**: Reads IMU data through SPI1 from IMU, sends data to upper-board through UART1, sends to and reads from Dynamixel motors through USART2/3/4 concurrently.
 
-+ **ZJUDancer_code_foot**: Based on code_foot in 2016,we added DMA to speed up pressure analog signal reading. Finally the Foot module came into use in RoboCup World Competition.
++ **ZJUDancer_code_foot**: Foot pressure sensor board, reads 4-way analog signals of pressure gauge through ADC1/2/3/4(DMA used). Pressure data is sent through UART1, and transferred into RS-485 signals to upper-computer.
 
